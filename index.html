@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Brian Pelow — Platform Engineering Intelligence</title>
+<title>Brian Pelow â€” Platform Engineering Intelligence</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -89,9 +89,9 @@
       <div>
         <div class="wordmark">Platform Engineering Intelligence</div>
         <h1>Brian Pelow</h1>
-        <div class="subtitle">// fintech · manufacturing · regulated industries · agentic systems</div>
+        <div class="subtitle">// fintech Â· manufacturing Â· regulated industries Â· agentic systems</div>
       </div>
-      <div class="live-badge"><div class="pulse"></div>Live · Updated nightly</div>
+      <div class="live-badge"><div class="pulse"></div>Live Â· Updated nightly</div>
     </div>
   </header>
   <div class="stats-bar" id="stats">
@@ -257,7 +257,7 @@
   </div>
   <div class="timeline" id="activity-feed"></div>
   <footer>
-    <div class="footer-text">// brianpelow · platform engineering · fintech · manufacturing · regulated industries</div>
+    <div class="footer-text">// brianpelow Â· platform engineering Â· fintech Â· manufacturing Â· regulated industries</div>
     <div class="footer-links">
       <a href="https://github.com/brianpelow" target="_blank">github.com/brianpelow</a>
       <a href="https://github.com/brianpelow/brianpelow" target="_blank">portfolio readme</a>
@@ -272,7 +272,7 @@ const MATURITY_DATA = [
   { domain: "Security", level: 3, name: "Defined" },
   { domain: "Dev Experience", level: 4, name: "Measured" },
   { domain: "Observability", level: 3, name: "Defined" },
-  { domain: "Governance", level: 3, name: "Defined" },
+  { domain: "Governance", level: 5, name: "Optimizing" },
 ];
 const LEVEL_COLORS = { 1: "#ef4444", 2: "#f59e0b", 3: "#4f6ef7", 4: "#10b981", 5: "#7c3aed" };
 const LEVEL_NAMES = { 1: "Initial", 2: "Managed", 3: "Defined", 4: "Measured", 5: "Optimizing" };
@@ -294,13 +294,13 @@ function renderMaturity() {
 }
 
 const ACTIVITY = [
-  { time: "02:03 UTC", repo: "platform-maturity-model", msg: "chore(agent): self-assessment Level 3/5 — Defined" },
-  { time: "02:02 UTC", repo: "mcp-compliance-grc", msg: "chore(agent): SOC2 self-assessment — 18 controls mapped" },
-  { time: "02:01 UTC", repo: "TechDebtLedger", msg: "chore(agent): self-scan — debt score 24/100" },
-  { time: "02:00 UTC", repo: "PlatformSLOBoard", msg: "chore(agent): SLO snapshot — overall score 74/100" },
-  { time: "02:00 UTC", repo: "BoardroomBrief", msg: "chore(agent): weekly brief generated — health 81/100" },
-  { time: "02:00 UTC", repo: "innersource-scorecard", msg: "chore(agent): self-scorecard — grade B (78/100)" },
-  { time: "02:00 UTC", repo: "repoforge", msg: "chore(agent): template stats updated — 7 templates" },
+  { time: "02:03 UTC", repo: "platform-maturity-model", msg: "chore(agent): self-assessment Level 3/5 â€” Defined" },
+  { time: "02:02 UTC", repo: "mcp-compliance-grc", msg: "chore(agent): SOC2 self-assessment â€” 18 controls mapped" },
+  { time: "02:01 UTC", repo: "TechDebtLedger", msg: "chore(agent): self-scan â€” debt score 24/100" },
+  { time: "02:00 UTC", repo: "PlatformSLOBoard", msg: "chore(agent): SLO snapshot â€” overall score 74/100" },
+  { time: "02:00 UTC", repo: "BoardroomBrief", msg: "chore(agent): weekly brief generated â€” health 81/100" },
+  { time: "02:00 UTC", repo: "innersource-scorecard", msg: "chore(agent): self-scorecard â€” grade B (78/100)" },
+  { time: "02:00 UTC", repo: "repoforge", msg: "chore(agent): template stats updated â€” 7 templates" },
   { time: "02:00 UTC", repo: "service-catalog-sync", msg: "chore(agent): catalog-info.yaml refreshed" },
 ];
 
@@ -308,7 +308,7 @@ function renderActivity() {
   const today = new Date().toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
   document.getElementById("activity-feed").innerHTML = ACTIVITY.map(a => `
     <div class="timeline-item">
-      <div class="timeline-time">${today} · ${a.time}</div>
+      <div class="timeline-time">${today} Â· ${a.time}</div>
       <div class="timeline-repo">${a.repo}</div>
       <div class="timeline-msg">${a.msg}</div>
     </div>`).join('');
