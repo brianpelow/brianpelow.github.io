@@ -3,26 +3,334 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Brian Pelow Platform Engineering Intelligence</title>
+<title>Brian Pelow — Platform Engineering Intelligence</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style> :root { --bg: #09090f; --surface: #0f0f1a; --surface2: #16162a; --border: #1e1e3a; --accent: #4f6ef7; --accent2: #7c3aed; --green: #10b981; --yellow: #f59e0b; --red: #ef4444; --text: #e8e8f0; --muted: #6b6b8a; --mono: 'DM Mono', monospace; --sans: 'Syne', sans-serif; } * { margin: 0; padding: 0; box-sizing: border-box; } body { background: var(--bg); color: var(--text); font-family: var(--sans); min-height: 100vh; overflow-x: hidden; } body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(79,110,247,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(79,110,247,0.03) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; z-index: 0; } .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; } header { padding: 3rem 0 2rem; border-bottom: 1px solid var(--border); } .header-inner { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; flex-wrap: wrap; } .wordmark { font-size: 0.7rem; font-family: var(--mono); color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem; } h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1; background: linear-gradient(135deg, #e8e8f0 0%, #7c3aed 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; } .subtitle { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); margin-top: 0.75rem; letter-spacing: 0.05em; } .live-badge { display: flex; align-items: center; gap: 0.5rem; font-family: var(--mono); font-size: 0.7rem; color: var(--green); letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 0.8rem; border: 1px solid rgba(16,185,129,0.3); border-radius: 2px; background: rgba(16,185,129,0.05); } .pulse { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; } @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } } .stats-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 2rem 0; } .stat { background: var(--surface); padding: 1.5rem; transition: background 0.2s; } .stat:hover { background: var(--surface2); } .stat-value { font-size: 2rem; font-weight: 800; letter-spacing: -0.04em; color: var(--text); line-height: 1; } .stat-value.accent { color: var(--accent); } .stat-value.green { color: var(--green); } .stat-label { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 0.4rem; } .section-header { display: flex; align-items: center; gap: 1rem; margin: 3rem 0 1.5rem; } .section-label { font-family: var(--mono); font-size: 0.65rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; } .section-line { flex: 1; height: 1px; background: var(--border); } .repo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); } .repo-card { background: var(--surface); padding: 1.5rem; transition: background 0.2s; text-decoration: none; color: inherit; display: block; position: relative; overflow: hidden; } .repo-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; } .repo-card:hover { background: var(--surface2); } .repo-card:hover::before { transform: scaleX(1); } .repo-name { font-family: var(--mono); font-size: 0.85rem; font-weight: 500; color: var(--accent); margin-bottom: 0.5rem; } .repo-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.5; margin-bottom: 1rem; } .repo-meta { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; } .badge { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.25rem 0.5rem; border-radius: 2px; } .badge-python { background: rgba(79,110,247,0.15); color: #818cf8; } .badge-mcp { background: rgba(124,58,237,0.15); color: #a78bfa; } .badge-agent { background: rgba(16,185,129,0.15); color: #34d399; } .badge-fintech { background: rgba(245,158,11,0.15); color: #fbbf24; } .ci-badge { display: flex; align-items: center; gap: 0.3rem; font-family: var(--mono); font-size: 0.6rem; color: var(--green); } .ci-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); } .category { margin-bottom: 0.5rem; } .category-title { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; padding: 0.6rem 0; border-bottom: 1px solid var(--border); margin-bottom: 1px; } .timeline { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 3rem; } .timeline-item { background: var(--surface); padding: 1rem 1.5rem; display: flex; align-items: center; gap: 1.5rem; } .timeline-time { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); min-width: 140px; } .timeline-repo { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); min-width: 200px; } .timeline-msg { font-size: 0.8rem; color: var(--text); flex: 1; } .maturity-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 3rem; } .maturity-card { background: var(--surface); padding: 1.25rem; } .maturity-domain { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem; } .maturity-level { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.05em; line-height: 1; } .maturity-name { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); margin-top: 0.3rem; } .level-bar { display: flex; gap: 3px; margin-top: 0.75rem; } .level-pip { flex: 1; height: 3px; background: var(--border); border-radius: 1px; } .level-pip.filled { background: var(--accent); } .level-pip.filled.high { background: var(--green); } footer { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; } .footer-text { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.08em; } .footer-links { display: flex; gap: 1.5rem; } .footer-links a { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); text-decoration: none; letter-spacing: 0.08em; transition: color 0.2s; } .footer-links a:hover { color: var(--accent); } .fade-in { opacity: 0; transform: translateY(16px); animation: fadeIn 0.5s forwards; } @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } } .fade-in:nth-child(1) { animation-delay: 0.05s; } .fade-in:nth-child(2) { animation-delay: 0.10s; } .fade-in:nth-child(3) { animation-delay: 0.15s; } .fade-in:nth-child(4) { animation-delay: 0.20s; } .fade-in:nth-child(5) { animation-delay: 0.25s; } .fade-in:nth-child(6) { animation-delay: 0.30s; } @media (max-width: 600px) { .repo-grid { grid-template-columns: 1fr; } .maturity-grid { grid-template-columns: repeat(2, 1fr); } .header-inner { flex-direction: column; align-items: flex-start; } }
+<style>
+  :root {
+    --bg: #09090f; --surface: #0f0f1a; --surface2: #16162a; --border: #1e1e3a;
+    --accent: #4f6ef7; --accent2: #7c3aed; --green: #10b981; --yellow: #f59e0b;
+    --red: #ef4444; --text: #e8e8f0; --muted: #6b6b8a;
+    --mono: 'DM Mono', monospace; --sans: 'Syne', sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); min-height: 100vh; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(79,110,247,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(79,110,247,0.03) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; z-index: 0; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
+  header { padding: 3rem 0 2rem; border-bottom: 1px solid var(--border); }
+  .header-inner { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+  .wordmark { font-size: 0.7rem; font-family: var(--mono); color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1; background: linear-gradient(135deg, #e8e8f0 0%, #7c3aed 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .subtitle { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); margin-top: 0.75rem; letter-spacing: 0.05em; }
+  .live-badge { display: flex; align-items: center; gap: 0.5rem; font-family: var(--mono); font-size: 0.7rem; color: var(--green); letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 0.8rem; border: 1px solid rgba(16,185,129,0.3); border-radius: 2px; background: rgba(16,185,129,0.05); }
+  .pulse { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } }
+  .stats-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 2rem 0; }
+  .stat { background: var(--surface); padding: 1.5rem; transition: background 0.2s; }
+  .stat:hover { background: var(--surface2); }
+  .stat-value { font-size: 2rem; font-weight: 800; letter-spacing: -0.04em; color: var(--text); line-height: 1; }
+  .stat-value.accent { color: var(--accent); }
+  .stat-value.green { color: var(--green); }
+  .stat-label { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 0.4rem; }
+  .section-header { display: flex; align-items: center; gap: 1rem; margin: 3rem 0 1.5rem; }
+  .section-label { font-family: var(--mono); font-size: 0.65rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; }
+  .section-line { flex: 1; height: 1px; background: var(--border); }
+  .repo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .repo-card { background: var(--surface); padding: 1.5rem; transition: background 0.2s; text-decoration: none; color: inherit; display: block; position: relative; overflow: hidden; }
+  .repo-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+  .repo-card:hover { background: var(--surface2); }
+  .repo-card:hover::before { transform: scaleX(1); }
+  .repo-name { font-family: var(--mono); font-size: 0.85rem; font-weight: 500; color: var(--accent); margin-bottom: 0.5rem; }
+  .repo-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.5; margin-bottom: 1rem; }
+  .repo-meta { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .badge { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.25rem 0.5rem; border-radius: 2px; }
+  .badge-python { background: rgba(79,110,247,0.15); color: #818cf8; }
+  .badge-mcp { background: rgba(124,58,237,0.15); color: #a78bfa; }
+  .badge-agent { background: rgba(16,185,129,0.15); color: #34d399; }
+  .badge-fintech { background: rgba(245,158,11,0.15); color: #fbbf24; }
+  .ci-badge { display: flex; align-items: center; gap: 0.3rem; font-family: var(--mono); font-size: 0.6rem; color: var(--green); }
+  .ci-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); }
+  .category { margin-bottom: 0.5rem; }
+  .category-title { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; padding: 0.6rem 0; border-bottom: 1px solid var(--border); margin-bottom: 1px; }
+  .timeline { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 3rem; }
+  .timeline-item { background: var(--surface); padding: 1rem 1.5rem; display: flex; align-items: center; gap: 1.5rem; }
+  .timeline-time { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); min-width: 140px; }
+  .timeline-repo { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); min-width: 200px; }
+  .timeline-msg { font-size: 0.8rem; color: var(--text); flex: 1; }
+  .maturity-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 3rem; }
+  .maturity-card { background: var(--surface); padding: 1.25rem; }
+  .maturity-domain { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .maturity-level { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.05em; line-height: 1; }
+  .maturity-name { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); margin-top: 0.3rem; }
+  .level-bar { display: flex; gap: 3px; margin-top: 0.75rem; }
+  .level-pip { flex: 1; height: 3px; background: var(--border); border-radius: 1px; }
+  .level-pip.filled { background: var(--accent); }
+  .level-pip.filled.high { background: var(--green); }
+  footer { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-text { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.08em; }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); text-decoration: none; letter-spacing: 0.08em; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--accent); }
+  .fade-in { opacity: 0; transform: translateY(16px); animation: fadeIn 0.5s forwards; }
+  @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+  .fade-in:nth-child(1) { animation-delay: 0.05s; }
+  .fade-in:nth-child(2) { animation-delay: 0.10s; }
+  .fade-in:nth-child(3) { animation-delay: 0.15s; }
+  .fade-in:nth-child(4) { animation-delay: 0.20s; }
+  .fade-in:nth-child(5) { animation-delay: 0.25s; }
+  .fade-in:nth-child(6) { animation-delay: 0.30s; }
+  @media (max-width: 600px) { .repo-grid { grid-template-columns: 1fr; } .maturity-grid { grid-template-columns: repeat(2, 1fr); } .header-inner { flex-direction: column; align-items: flex-start; } }
 </style>
 </head>
 <body>
-<div class="container"> <header> <div class="header-inner"> <div> <div class="wordmark">Platform Engineering Intelligence</div> <h1>Brian Pelow</h1> <div class="subtitle">// fintech · manufacturing · regulated industries · agentic systems</div> </div> <div class="live-badge"><div class="pulse"></div>LIVE · Updated nightly</div> </div> </header> <div class="stats-bar" id="stats"> <div class="stat fade-in"><div class="stat-value accent">25</div><div class="stat-label">Public repos</div></div> <div class="stat fade-in"><div class="stat-value green" id="test-count">428</div><div class="stat-label">Passing tests</div></div> <div class="stat fade-in"><div class="stat-value">16</div><div class="stat-label">Nightly agents</div></div> <div class="stat fade-in"><div class="stat-value accent">5</div><div class="stat-label">Domains covered</div></div> <div class="stat fade-in"><div class="stat-value green">3</div><div class="stat-label">MCP servers</div></div> <div class="stat fade-in"><div class="stat-value">3</div><div class="stat-label">Agentic systems</div></div> </div> <div class="section-header"> <span class="section-label">Platform maturity</span> <div class="section-line"></div> <span class="section-label" id="maturity-date">self-assessed nightly</span> </div> <div class="maturity-grid" id="maturity-grid"></div> <div class="section-header"> <span class="section-label">Repository catalog</span> <div class="section-line"></div> </div> <div class="category"> <div class="category-title">Agentic systems</div> <div class="repo-grid"> <a class="repo-card fade-in" href="https://github.com/brianpelow/IncidentPilot" target="_blank"> <div class="repo-name">IncidentPilot</div> <div class="repo-desc">Multi-agent incident response triage, escalation, runbook retrieval, and post-mortem drafting with LangGraph.</div> <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">LangGraph</span><span class="badge badge-fintech">SRE</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div> </a> <a class="repo-card fade-in" href="https://github.com/brianpelow/DataPipelineAgent" target="_blank"> <div class="repo-name">DataPipelineAgent</div> <div class="repo-desc">Agentic ETL orchestrator monitors data sources, detects schema drift, and auto-heals pipelines.</div> <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">Agentic</span><span class="badge badge-fintech">Fintech</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div> </a> <a class="repo-card fade-in" href="https://github.com/brianpelow/BoardroomBrief" target="_blank"> <div class="repo-name">BoardroomBrief</div> <div class="repo-desc">Autonomous weekly engineering brief pulls GitHub, JIRA, and incident data into exec-ready narratives.</div> <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">Autonomous</span><span class="badge badge-fintech">Executive</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div> </a> </div> </div> <div class="category" style="margin-top:1px;"> <div class="category-title">MCP servers</div> <div class="repo-grid"> <a class="repo-card fade-in" href="https://github.com/brianpelow/mcp-incident-intel" target="_blank"> <div class="repo-name">mcp-incident-intel</div> <div class="repo-desc">Wires PagerDuty, Dynatrace, and runbooks into a single incident context source for LLM agents.</div> <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-mcp">MCP</span><span class="badge badge-fintech">SRE</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div> </a> <a class="repo-card fade-in" href="https://github.com/brianpelow/mcp-compliance-grc" target="_blank"> <div class="repo-name">mcp-compliance-grc</div> <div class="repo-desc">Maps SOC 2, ISO 27001, and PCI-DSS controls to code evidence and drafts compliance narratives.</div> <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-mcp">MCP</span><span class="badge badge-fintech">Compliance</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div> </a> <a class="repo-card fade-in" href="https://github.com/brianpelow/mcp-developer-portal" target="_blank"> <div class="repo-name">mcp-developer-portal</div> <div class="repo-desc">Wraps Backstage lets AI agents query the service catalog, fetch TechDocs, and scaffold services.</div> <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-mcp">MCP</span><span class="badge badge-fintech">Platform</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div> </a> </div> </div> <div class="category" style="margin-top:1px;"> <div class="category-title">Engineering metrics</div> <div class="repo-grid"> <a class="repo-card fade-in" href="https://github.com/brianpelow/TeamHealthRadar" target="_blank"> <div class="repo-name">TeamHealthRadar</div> <div class="repo-desc">DORA + SPACE framework scoring with AI-synthesized weekly health narratives.</div> <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">FastAPI</span><span class="badge badge-fintech">DORA</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div> </a> <a class="repo-card fade-in" href="https://github.com/brianpelow/PlatformSLOBoard" target="_blank"> <div class="repo-name">PlatformSLOBoard</div> <div class="repo-desc">SLO aggregation from Dynatrace and PagerDuty with error budget burn rates and exec summaries.</div> <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">FastAPI</span><span class="badge badge-fintech">SLO</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div> </a> <a class="repo-card fade-in" href="https://github.com/brianpelow/TechDebtLedger" target="_blank"> <div class="repo-name">TechDebtLedger</div> <div class="repo-desc">Scans repos for complexity hotspots and stale dependencies produces a prioritized payoff roadmap.</div> <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">FastAPI</span><span class="badge badge-fintech">Tech Debt</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div> </a> </div> </div> <div class="category" style="margin-top:1px;"> <div class="category-title">Developer productivity CLIs</div> <div class="repo-grid"> <a class="repo-card fade-in" href="https://github.com/brianpelow/repoforge" target="_blank"> <div class="repo-name">repoforge</div> <div class="repo-desc">AI-assisted repo scaffolding with 7 templates tuned for regulated industries.</div> <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">CLI</span><span class="badge badge-fintech">Scaffolding</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div> </a> <a class="repo-card fade-in" href="https://github.com/brianpelow/pr-autopilot" target="_blank"> <div class="repo-name">pr-autopilot</div> <div class="repo-desc">Generates PR descriptions, suggests reviewers, and applies labels from your diff using Claude.</div> <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">CLI</span><span class="badge badge-fintech">GitHub</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div> </a> <a class="repo-card fade-in" href="https://github.com/brianpelow/runbook-gen" target="_blank"> <div class="repo-name">runbook-gen</div> <div class="repo-desc">Auto-generates operational runbooks from code, alert definitions, and incident history.</div> <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">CLI</span><span class="badge badge-fintech">SRE</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div> </a> </div> </div> <div class="category" style="margin-top:1px;"> <div class="category-title">Platform engineering patterns</div> <div class="repo-grid"> <a class="repo-card fade-in" href="https://github.com/brianpelow/platform-maturity-model" target="_blank"> <div class="repo-name">platform-maturity-model</div> <div class="repo-desc">5-level maturity framework with automated evidence collection across 6 capability domains.</div> <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">Framework</span><span class="badge badge-fintech">Maturity</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div> </a> <a class="repo-card fade-in" href="https://github.com/brianpelow/innersource-scorecard" target="_blank"> <div class="repo-name">innersource-scorecard</div> <div class="repo-desc">Grades repos on discoverability, documentation, contribution friction, and adoption signals.</div> <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">Scoring</span><span class="badge badge-fintech">Inner-source</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div> </a> <a class="repo-card fade-in" href="https://github.com/brianpelow/service-catalog-sync" target="_blank"> <div class="repo-name">service-catalog-sync</div> <div class="repo-desc">Automated Backstage catalog hydration scans repos and infers ownership and tech stack.</div> <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">Backstage</span><span class="badge badge-fintech">Platform</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div> </a> </div> </div> <div class="category" style="margin-top:1px;"> <div class="category-title">Control plane</div> <div class="repo-grid"> <a class="repo-card fade-in" href="https://github.com/brianpelow/orbit-platform" target="_blank"> <div class="repo-name">orbit-platform</div> <div class="repo-desc">Production Services Control Plane 6-stage governance framework for container, VM, and desktop image builds in regulated financial services.</div> <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">OPA</span><span class="badge badge-fintech">Control Plane</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div> </a> </div> </div> <div class="category" style="margin-top:1px;"><div class="category-title">Change management</div><div class="repo-grid"><a class="repo-card fade-in" href="https://github.com/brianpelow/cab-automation" target="_blank"><div class="repo-name">cab-automation</div><div class="repo-desc">Change Advisory Board automation AI-generated CAB packages, risk scoring, and deployment gates for regulated financial services.</div><div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">FastAPI</span><span class="badge badge-fintech">SOX ITGC</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div></a></div></div> <div class="category" style="margin-top:1px;"><div class="category-title">Just for fun</div><div class="repo-grid"><a class="repo-card fade-in" href="https://github.com/brianpelow/vibe-check-cli" target="_blank"><div class="repo-name">vibe-check-cli</div><div class="repo-desc">Analyzes the vibe of any GitHub repo â€” commit messages, PR titles, README tone â€” and delivers a brutally honest vibe report.</div><div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">CLI</span><span class="badge badge-fintech">Fun</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div></a><a class="repo-card fade-in" href="https://github.com/brianpelow/code-roast" target="_blank"><div class="repo-name">code-roast</div><div class="repo-desc">Paste any code and get it brutally but lovingly roasted by a senior engineer who has seen things.</div><div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">CLI</span><span class="badge badge-fintech">Fun</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div></a><a class="repo-card fade-in" href="https://github.com/brianpelow/sports-analytics-for-engineers" target="_blank"><div class="repo-name">sports-analytics-for-engineers</div><div class="repo-desc">DORA metrics for sports teams â€” deployment frequency, change failure rate, and MTTR for your favorite team.</div><div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">CLI</span><span class="badge badge-fintech">Fun</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div></a></div></div> <div class="section-header" style="margin-top:3rem;"> <span class="section-label">Recent agent activity</span> <div class="section-line"></div> </div> <div class="timeline" id="activity-feed"></div> <footer> <div class="footer-text">// brianpelow platform engineering fintech manufacturing regulated industries</div> <div class="footer-links"> <a href="https://github.com/brianpelow" target="_blank">github.com/brianpelow</a> <a href="https://github.com/brianpelow/brianpelow" target="_blank">portfolio readme</a> </div> </footer>
-</div> <script>
-const MATURITY_DATA = [ { domain: "Delivery", level: 3, name: "Defined" }, { domain: "Reliability", level: 3, name: "Defined" }, { domain: "Security", level: 3, name: "Defined" }, { domain: "Dev Experience", level: 4, name: "Measured" }, { domain: "Observability", level: 3, name: "Defined" }, { domain: "Governance", level: 3, name: "Defined" },
+<div class="container">
+  <header>
+    <div class="header-inner">
+      <div>
+        <div class="wordmark">Platform Engineering Intelligence</div>
+        <h1>Brian Pelow</h1>
+        <div class="subtitle">// fintech · manufacturing · regulated industries · agentic systems</div>
+      </div>
+      <div class="live-badge"><div class="pulse"></div>Live · Updated nightly</div>
+    </div>
+  </header>
+  <div class="stats-bar" id="stats">
+    <div class="stat fade-in"><div class="stat-value accent">25</div><div class="stat-label">Public repos</div></div>
+    <div class="stat fade-in"><div class="stat-value green" id="test-count">428</div><div class="stat-label">Passing tests</div></div>
+    <div class="stat fade-in"><div class="stat-value">20</div><div class="stat-label">Nightly agents</div></div>
+    <div class="stat fade-in"><div class="stat-value accent">5</div><div class="stat-label">Domains covered</div></div>
+    <div class="stat fade-in"><div class="stat-value green">3</div><div class="stat-label">MCP servers</div></div>
+    <div class="stat fade-in"><div class="stat-value">3</div><div class="stat-label">Agentic systems</div></div>
+  </div>
+  <div class="section-header">
+    <span class="section-label">Platform maturity</span>
+    <div class="section-line"></div>
+    <span class="section-label" id="maturity-date">self-assessed nightly</span>
+  </div>
+  <div class="maturity-grid" id="maturity-grid"></div>  <div class="section-header">
+    <span class="section-label">Repository catalog</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="category">
+    <div class="category-title">Agentic systems</div>
+    <div class="repo-grid">
+      <a class="repo-card fade-in" href="https://github.com/brianpelow/IncidentPilot" target="_blank">
+        <div class="repo-name">IncidentPilot</div>
+        <div class="repo-desc">Multi-agent incident response: triage, escalation, runbook retrieval, and post-mortem drafting with LangGraph.</div>
+        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">LangGraph</span><span class="badge badge-fintech">SRE</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+      </a>
+      <a class="repo-card fade-in" href="https://github.com/brianpelow/DataPipelineAgent" target="_blank">
+        <div class="repo-name">DataPipelineAgent</div>
+        <div class="repo-desc">Agentic ETL orchestrator: monitors data sources, detects schema drift, and auto-heals pipelines.</div>
+        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">Agentic</span><span class="badge badge-fintech">Fintech</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+      </a>
+      <a class="repo-card fade-in" href="https://github.com/brianpelow/BoardroomBrief" target="_blank">
+        <div class="repo-name">BoardroomBrief</div>
+        <div class="repo-desc">Autonomous weekly engineering brief: pulls GitHub, JIRA, and incident data into exec-ready narratives.</div>
+        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">Autonomous</span><span class="badge badge-fintech">Executive</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+      </a>
+    </div>
+  </div>
+  <div class="category" style="margin-top:1px;">
+    <div class="category-title">MCP servers</div>
+    <div class="repo-grid">
+      <a class="repo-card fade-in" href="https://github.com/brianpelow/mcp-incident-intel" target="_blank">
+        <div class="repo-name">mcp-incident-intel</div>
+        <div class="repo-desc">Wires PagerDuty, Dynatrace, and runbooks into a single incident context source for LLM agents.</div>
+        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-mcp">MCP</span><span class="badge badge-fintech">SRE</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+      </a>
+      <a class="repo-card fade-in" href="https://github.com/brianpelow/mcp-compliance-grc" target="_blank">
+        <div class="repo-name">mcp-compliance-grc</div>
+        <div class="repo-desc">Maps SOC 2, ISO 27001, and PCI-DSS controls to code evidence and drafts compliance narratives.</div>
+        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-mcp">MCP</span><span class="badge badge-fintech">Compliance</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+      </a>
+      <a class="repo-card fade-in" href="https://github.com/brianpelow/mcp-developer-portal" target="_blank">
+        <div class="repo-name">mcp-developer-portal</div>
+        <div class="repo-desc">Wraps Backstage: lets AI agents query the service catalog, fetch TechDocs, and scaffold services.</div>
+        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-mcp">MCP</span><span class="badge badge-fintech">Platform</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+      </a>
+    </div>
+  </div>
+  <div class="category" style="margin-top:1px;">
+    <div class="category-title">Engineering metrics</div>
+    <div class="repo-grid">
+      <a class="repo-card fade-in" href="https://github.com/brianpelow/TeamHealthRadar" target="_blank">
+        <div class="repo-name">TeamHealthRadar</div>
+        <div class="repo-desc">DORA + SPACE framework scoring with AI-synthesized weekly health narratives.</div>
+        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">FastAPI</span><span class="badge badge-fintech">DORA</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+      </a>
+      <a class="repo-card fade-in" href="https://github.com/brianpelow/PlatformSLOBoard" target="_blank">
+        <div class="repo-name">PlatformSLOBoard</div>
+        <div class="repo-desc">SLO aggregation from Dynatrace and PagerDuty with error budget burn rates and exec summaries.</div>
+        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">FastAPI</span><span class="badge badge-fintech">SLO</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+      </a>
+      <a class="repo-card fade-in" href="https://github.com/brianpelow/TechDebtLedger" target="_blank">
+        <div class="repo-name">TechDebtLedger</div>
+        <div class="repo-desc">Scans repos for complexity hotspots and stale dependencies, produces a prioritized payoff roadmap.</div>
+        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">FastAPI</span><span class="badge badge-fintech">Tech Debt</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+      </a>
+    </div>
+  </div>
+  <div class="category" style="margin-top:1px;">
+    <div class="category-title">Developer productivity CLIs</div>
+    <div class="repo-grid">
+      <a class="repo-card fade-in" href="https://github.com/brianpelow/repoforge" target="_blank">
+        <div class="repo-name">repoforge</div>
+        <div class="repo-desc">AI-assisted repo scaffolding with 7 templates tuned for regulated industries.</div>
+        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">CLI</span><span class="badge badge-fintech">Scaffolding</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+      </a>
+      <a class="repo-card fade-in" href="https://github.com/brianpelow/pr-autopilot" target="_blank">
+        <div class="repo-name">pr-autopilot</div>
+        <div class="repo-desc">Generates PR descriptions, suggests reviewers, and applies labels from your diff.</div>
+        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">CLI</span><span class="badge badge-fintech">GitHub</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+      </a>
+      <a class="repo-card fade-in" href="https://github.com/brianpelow/runbook-gen" target="_blank">
+        <div class="repo-name">runbook-gen</div>
+        <div class="repo-desc">Auto-generates operational runbooks from code, alert definitions, and incident history.</div>
+        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">CLI</span><span class="badge badge-fintech">SRE</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+      </a>
+    </div>
+  </div>
+  <div class="category" style="margin-top:1px;">
+    <div class="category-title">Platform engineering patterns</div>
+    <div class="repo-grid">
+      <a class="repo-card fade-in" href="https://github.com/brianpelow/platform-maturity-model" target="_blank">
+        <div class="repo-name">platform-maturity-model</div>
+        <div class="repo-desc">5-level maturity framework with automated evidence collection across 6 capability domains.</div>
+        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">Framework</span><span class="badge badge-fintech">Maturity</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+      </a>
+      <a class="repo-card fade-in" href="https://github.com/brianpelow/innersource-scorecard" target="_blank">
+        <div class="repo-name">innersource-scorecard</div>
+        <div class="repo-desc">Grades repos on discoverability, documentation, contribution friction, and adoption signals.</div>
+        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">Scoring</span><span class="badge badge-fintech">Inner-source</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+      </a>
+      <a class="repo-card fade-in" href="https://github.com/brianpelow/service-catalog-sync" target="_blank">
+        <div class="repo-name">service-catalog-sync</div>
+        <div class="repo-desc">Automated Backstage catalog hydration: scans repos and infers ownership and tech stack.</div>
+        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">Backstage</span><span class="badge badge-fintech">Platform</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+      </a>
+    </div>
+  </div>
+  <div class="category" style="margin-top:1px;">
+    <div class="category-title">Control plane and governance</div>
+    <div class="repo-grid">
+      <a class="repo-card fade-in" href="https://github.com/brianpelow/orbit-platform" target="_blank">
+        <div class="repo-name">orbit-platform</div>
+        <div class="repo-desc">Production Services Control Plane: 6-stage governance framework for container, VM, and desktop image builds in regulated financial services.</div>
+        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">OPA</span><span class="badge badge-fintech">Control Plane</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+      </a>
+      <a class="repo-card fade-in" href="https://github.com/brianpelow/cab-automation" target="_blank">
+        <div class="repo-name">cab-automation</div>
+        <div class="repo-desc">Change Advisory Board automation: AI-generated CAB packages, risk scoring, and deployment gates for regulated financial services.</div>
+        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">FastAPI</span><span class="badge badge-fintech">SOX ITGC</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+      </a>
+      <a class="repo-card fade-in" href="https://github.com/brianpelow/fintech-platform-reference" target="_blank">
+        <div class="repo-name">fintech-platform-reference</div>
+        <div class="repo-desc">Reference architecture: ADRs, SLOs, runbooks, Backstage catalog, and PCI-DSS/SOX/FFIEC control mappings.</div>
+        <div class="repo-meta"><span class="badge badge-python">Docs</span><span class="badge badge-agent">ADRs</span><span class="badge badge-fintech">Compliance</span></div>
+      </a>
+    </div>
+  </div>
+  <div class="category" style="margin-top:1px;">
+    <div class="category-title">Just for fun</div>
+    <div class="repo-grid">
+      <a class="repo-card fade-in" href="https://github.com/brianpelow/vibe-check-cli" target="_blank">
+        <div class="repo-name">vibe-check-cli</div>
+        <div class="repo-desc">Analyzes the vibe of any GitHub repo and delivers a brutally honest vibe report.</div>
+        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">CLI</span><span class="badge badge-fintech">Fun</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+      </a>
+      <a class="repo-card fade-in" href="https://github.com/brianpelow/code-roast" target="_blank">
+        <div class="repo-name">code-roast</div>
+        <div class="repo-desc">Paste any code and get it brutally but lovingly roasted by a senior engineer who has seen things.</div>
+        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">CLI</span><span class="badge badge-fintech">Fun</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+      </a>
+      <a class="repo-card fade-in" href="https://github.com/brianpelow/sports-analytics-for-engineers" target="_blank">
+        <div class="repo-name">sports-analytics-for-engineers</div>
+        <div class="repo-desc">DORA metrics for sports teams: deployment frequency, change failure rate, and MTTR for your favorite team.</div>
+        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">CLI</span><span class="badge badge-fintech">Fun</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+      </a>
+    </div>
+  </div>
+  <div class="section-header" style="margin-top:3rem;">
+    <span class="section-label">Recent agent activity</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="timeline" id="activity-feed"></div>
+  <footer>
+    <div class="footer-text">// brianpelow · platform engineering · fintech · manufacturing · regulated industries</div>
+    <div class="footer-links">
+      <a href="https://github.com/brianpelow" target="_blank">github.com/brianpelow</a>
+      <a href="https://github.com/brianpelow/brianpelow" target="_blank">portfolio readme</a>
+      <a href="https://brianpelow.github.io/portfolio-assistant" target="_blank">portfolio assistant</a>
+    </div>
+  </footer>
+</div>
+<script>
+const MATURITY_DATA = [
+  { domain: "Delivery", level: 3, name: "Defined" },
+  { domain: "Reliability", level: 3, name: "Defined" },
+  { domain: "Security", level: 3, name: "Defined" },
+  { domain: "Dev Experience", level: 4, name: "Measured" },
+  { domain: "Observability", level: 3, name: "Defined" },
+  { domain: "Governance", level: 3, name: "Defined" },
 ];
 const LEVEL_COLORS = { 1: "#ef4444", 2: "#f59e0b", 3: "#4f6ef7", 4: "#10b981", 5: "#7c3aed" };
-const LEVEL_NAMES = { 1: "Initial", 2: "Managed", 3: "Defined", 4: "Measured", 5: "Optimizing" }; function renderMaturity() { const grid = document.getElementById("maturity-grid"); grid.innerHTML = MATURITY_DATA.map(d => { const color = LEVEL_COLORS[d.level]; const pips = [1,2,3,4,5].map(i => `<div class="level-pip ${i <= d.level ? (d.level >= 4 ? 'filled high' : 'filled') : ''}"></div>` ).join(''); return `<div class="maturity-card fade-in"> <div class="maturity-domain">${d.domain}</div> <div class="maturity-level" style="color:${color}">${d.level}</div> <div class="maturity-name">${LEVEL_NAMES[d.level]}</div> <div class="level-bar">${pips}</div> </div>`; }).join('');
-} const ACTIVITY = [ { time: "02:03 UTC", repo: "platform-maturity-model", msg: "chore(agent): self-assessment Level 3/5 Defined" }, { time: "02:02 UTC", repo: "mcp-compliance-grc", msg: "chore(agent): SOC2 self-assessment 18 controls mapped" }, { time: "02:01 UTC", repo: "TechDebtLedger", msg: "chore(agent): self-scan debt score 24/100" }, { time: "02:00 UTC", repo: "PlatformSLOBoard", msg: "chore(agent): SLO snapshot overall score 74/100" }, { time: "02:00 UTC", repo: "BoardroomBrief", msg: "chore(agent): weekly brief generated health 81/100" }, { time: "02:00 UTC", repo: "innersource-scorecard", msg: "chore(agent): self-scorecard grade B (78/100)" }, { time: "02:00 UTC", repo: "repoforge", msg: "chore(agent): template stats updated 7 templates" }, { time: "02:00 UTC", repo: "service-catalog-sync", msg: "chore(agent): catalog-info.yaml refreshed" },
-]; function renderActivity() { const today = new Date().toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" }); document.getElementById("activity-feed").innerHTML = ACTIVITY.map(a => ` <div class="timeline-item"> <div class="timeline-time">${today} ${a.time}</div> <div class="timeline-repo">${a.repo}</div> <div class="timeline-msg">${a.msg}</div> </div>`).join(''); document.getElementById("maturity-date").textContent = `last assessed ${today}`;
-} function animateNumber(el, target, duration) { const startTime = performance.now(); function update(now) { const progress = Math.min((now - startTime) / duration, 1); const eased = 1 - Math.pow(1 - progress, 3); el.textContent = Math.round(target * eased); if (progress < 1) requestAnimationFrame(update); } requestAnimationFrame(update);
-} renderMaturity();
+const LEVEL_NAMES = { 1: "Initial", 2: "Managed", 3: "Defined", 4: "Measured", 5: "Optimizing" };
+
+function renderMaturity() {
+  const grid = document.getElementById("maturity-grid");
+  grid.innerHTML = MATURITY_DATA.map(d => {
+    const color = LEVEL_COLORS[d.level];
+    const pips = [1,2,3,4,5].map(i =>
+      `<div class="level-pip ${i <= d.level ? (d.level >= 4 ? 'filled high' : 'filled') : ''}"></div>`
+    ).join('');
+    return `<div class="maturity-card fade-in">
+      <div class="maturity-domain">${d.domain}</div>
+      <div class="maturity-level" style="color:${color}">${d.level}</div>
+      <div class="maturity-name">${LEVEL_NAMES[d.level]}</div>
+      <div class="level-bar">${pips}</div>
+    </div>`;
+  }).join('');
+}
+
+const ACTIVITY = [
+  { time: "02:03 UTC", repo: "platform-maturity-model", msg: "chore(agent): self-assessment Level 3/5 — Defined" },
+  { time: "02:02 UTC", repo: "mcp-compliance-grc", msg: "chore(agent): SOC2 self-assessment — 18 controls mapped" },
+  { time: "02:01 UTC", repo: "TechDebtLedger", msg: "chore(agent): self-scan — debt score 24/100" },
+  { time: "02:00 UTC", repo: "PlatformSLOBoard", msg: "chore(agent): SLO snapshot — overall score 74/100" },
+  { time: "02:00 UTC", repo: "BoardroomBrief", msg: "chore(agent): weekly brief generated — health 81/100" },
+  { time: "02:00 UTC", repo: "innersource-scorecard", msg: "chore(agent): self-scorecard — grade B (78/100)" },
+  { time: "02:00 UTC", repo: "repoforge", msg: "chore(agent): template stats updated — 7 templates" },
+  { time: "02:00 UTC", repo: "service-catalog-sync", msg: "chore(agent): catalog-info.yaml refreshed" },
+];
+
+function renderActivity() {
+  const today = new Date().toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+  document.getElementById("activity-feed").innerHTML = ACTIVITY.map(a => `
+    <div class="timeline-item">
+      <div class="timeline-time">${today} · ${a.time}</div>
+      <div class="timeline-repo">${a.repo}</div>
+      <div class="timeline-msg">${a.msg}</div>
+    </div>`).join('');
+  document.getElementById("maturity-date").textContent = `last assessed ${today}`;
+}
+
+function animateNumber(el, target, duration) {
+  const startTime = performance.now();
+  function update(now) {
+    const progress = Math.min((now - startTime) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(target * eased);
+    if (progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+
+renderMaturity();
 renderActivity();
-window.addEventListener("load", () => { setTimeout(() => animateNumber(document.getElementById("test-count"), 428, 1500), 300);
+window.addEventListener("load", () => {
+  setTimeout(() => animateNumber(document.getElementById("test-count"), 428, 1500), 300);
 });
 </script>
 </body>
-</html> 
+</html>
