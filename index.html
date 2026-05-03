@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Brian Pelow â€” Platform Engineering Intelligence</title>
+<title>Brian Pelow Ã¢â‚¬â€ Platform Engineering Intelligence</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -89,13 +89,13 @@
       <div>
         <div class="wordmark">Platform Engineering Intelligence</div>
         <h1>Brian Pelow</h1>
-        <div class="subtitle">// fintech Â· manufacturing Â· regulated industries Â· agentic systems</div>
+        <div class="subtitle">// fintech Ã‚Â· manufacturing Ã‚Â· regulated industries Ã‚Â· agentic systems</div>
       </div>
-      <div class="live-badge"><div class="pulse"></div>Live Â· Updated nightly</div>
+      <div class="live-badge"><div class="pulse"></div>Live Ã‚Â· Updated nightly</div>
     </div>
   </header>
   <div class="stats-bar" id="stats">
-    <div class="stat fade-in"><div class="stat-value accent">25</div><div class="stat-label">Public repos</div></div>
+    <div class="stat fade-in"><div class="stat-value accent">29</div><div class="stat-label">Public repos</div></div>
     <div class="stat fade-in"><div class="stat-value green" id="test-count">428</div><div class="stat-label">Passing tests</div></div>
     <div class="stat fade-in"><div class="stat-value">20</div><div class="stat-label">Nightly agents</div></div>
     <div class="stat fade-in"><div class="stat-value accent">5</div><div class="stat-label">Domains covered</div></div>
@@ -257,7 +257,7 @@
   </div>
   <div class="timeline" id="activity-feed"></div>
   <footer>
-    <div class="footer-text">// brianpelow Â· platform engineering Â· fintech Â· manufacturing Â· regulated industries</div>
+    <div class="footer-text">// brianpelow Ã‚Â· platform engineering Ã‚Â· fintech Ã‚Â· manufacturing Ã‚Â· regulated industries</div>
     <div class="footer-links">
       <a href="https://github.com/brianpelow" target="_blank">github.com/brianpelow</a>
       <a href="https://github.com/brianpelow/brianpelow" target="_blank">portfolio readme</a>
@@ -294,13 +294,13 @@ function renderMaturity() {
 }
 
 const ACTIVITY = [
-  { time: "02:03 UTC", repo: "platform-maturity-model", msg: "chore(agent): self-assessment Level 3/5 â€” Defined" },
-  { time: "02:02 UTC", repo: "mcp-compliance-grc", msg: "chore(agent): SOC2 self-assessment â€” 18 controls mapped" },
-  { time: "02:01 UTC", repo: "TechDebtLedger", msg: "chore(agent): self-scan â€” debt score 24/100" },
-  { time: "02:00 UTC", repo: "PlatformSLOBoard", msg: "chore(agent): SLO snapshot â€” overall score 74/100" },
-  { time: "02:00 UTC", repo: "BoardroomBrief", msg: "chore(agent): weekly brief generated â€” health 81/100" },
-  { time: "02:00 UTC", repo: "innersource-scorecard", msg: "chore(agent): self-scorecard â€” grade B (78/100)" },
-  { time: "02:00 UTC", repo: "repoforge", msg: "chore(agent): template stats updated â€” 7 templates" },
+  { time: "02:03 UTC", repo: "platform-maturity-model", msg: "chore(agent): self-assessment Level 3/5 Ã¢â‚¬â€ Defined" },
+  { time: "02:02 UTC", repo: "mcp-compliance-grc", msg: "chore(agent): SOC2 self-assessment Ã¢â‚¬â€ 18 controls mapped" },
+  { time: "02:01 UTC", repo: "TechDebtLedger", msg: "chore(agent): self-scan Ã¢â‚¬â€ debt score 24/100" },
+  { time: "02:00 UTC", repo: "PlatformSLOBoard", msg: "chore(agent): SLO snapshot Ã¢â‚¬â€ overall score 74/100" },
+  { time: "02:00 UTC", repo: "BoardroomBrief", msg: "chore(agent): weekly brief generated Ã¢â‚¬â€ health 81/100" },
+  { time: "02:00 UTC", repo: "innersource-scorecard", msg: "chore(agent): self-scorecard Ã¢â‚¬â€ grade B (78/100)" },
+  { time: "02:00 UTC", repo: "repoforge", msg: "chore(agent): template stats updated Ã¢â‚¬â€ 7 templates" },
   { time: "02:00 UTC", repo: "service-catalog-sync", msg: "chore(agent): catalog-info.yaml refreshed" },
 ];
 
@@ -308,7 +308,7 @@ function renderActivity() {
   const today = new Date().toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
   document.getElementById("activity-feed").innerHTML = ACTIVITY.map(a => `
     <div class="timeline-item">
-      <div class="timeline-time">${today} Â· ${a.time}</div>
+      <div class="timeline-time">${today} Ã‚Â· ${a.time}</div>
       <div class="timeline-repo">${a.repo}</div>
       <div class="timeline-msg">${a.msg}</div>
     </div>`).join('');
