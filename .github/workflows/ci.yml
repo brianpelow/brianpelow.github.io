@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Guard against encoding corruption
+        run: |
+          python3 - <<'PY'
+          import sys
+          from pathlib import Path
+          text = Path("index.html").read_text(encoding="utf-8")
+          bad = sorted({c for c in text if ord(c) > 127})
+          if bad:
+              print("::error::Non-ASCII characters found in index.html")
+              for c in bad[:20]:
+                  print(f"  U+{ord(c):04X} {c!r} x{text.count(c)}")
+              print("Use HTML entities (&middot; &mdash;) instead of literals.")
+              sys.exit(1)
+          print(f"index.html is pure ASCII ({len(text)} chars)")
+          PY
+      - name: Verify HTML structure
+        run: |
+          python3 - <<'PY'
+          import sys
+          from pathlib import Path
+          text = Path("index.html").read_text(encoding="utf-8")
+          missing = [t for t in ("<!DOCTYPE html>", "<html", "</html>", "<script", "</script>") if t not in text]
+          if missing:
+              print(f"::error::Missing structural elements: {missing}")
+              sys.exit(1)
+          if text.count("<script") != text.count("</script>"):
+              print("::error::Unbalanced script tags")
+              sys.exit(1)
+          print("HTML structure valid")
+          PY
