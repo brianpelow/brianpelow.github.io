@@ -1,0 +1,45 @@
+name: sync-catalog
+
+on:
+  schedule:
+    - cron: "30 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Splice generated regions
+        run: python scripts/splice_blocks.py
+
+      - name: Guard against non-ASCII
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          text = Path("index.html").read_text(encoding="utf-8")
+          bad = sorted({c for c in text if ord(c) > 127})
+          if bad:
+              raise SystemExit("non-ASCII in index.html: " + ", ".join(f"U+{ord(c):04X}" for c in bad))
+          print("index.html is pure ASCII")
+          PY
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- index.html; then
+            echo "no change"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "chore(catalog): refresh generated regions from nightly state"
+          git push

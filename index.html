@@ -33,6 +33,13 @@
   .stat-value.green { color: var(--green); }
   .stat-label { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 0.4rem; }
   .stat-source { font-family: var(--mono); font-size: 0.55rem; color: var(--border); letter-spacing: 0.08em; margin-top: 0.2rem; }
+  .badge-grade { border-color: rgba(16,185,129,0.35); color: var(--green); }
+  .proof-list { border-top: 1px solid var(--border); }
+  .proof-row { display: flex; gap: 1.5rem; align-items: baseline; padding: 1rem 0; border-bottom: 1px solid var(--border); text-decoration: none; transition: background 0.2s; }
+  .proof-row:hover { background: var(--surface); }
+  .proof-tag { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.08em; min-width: 5.5rem; flex-shrink: 0; }
+  .proof-text { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+  .region-note { font-family: var(--mono); font-size: 0.6rem; color: var(--border); letter-spacing: 0.06em; margin-top: 0.75rem; }
   .section-header { display: flex; align-items: center; gap: 1rem; margin: 3rem 0 1.5rem; }
   .section-label { font-family: var(--mono); font-size: 0.65rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; }
   .section-line { flex: 1; height: 1px; background: var(--border); }
@@ -92,19 +99,42 @@
     </div>
   </header>
 
+
+  <!-- STATS:START -->
   <div class="stats-bar">
     <div class="stat">
-      <div class="stat-value accent" id="repo-count">&mdash;</div>
+      <div class="stat-value accent">43</div>
       <div class="stat-label">Public repos</div>
-      <div class="stat-source" id="repo-source">fetching from github api</div>
+      <div class="stat-source">auto-discovered</div>
     </div>
-    <div class="stat"><div class="stat-value green">26</div><div class="stat-label">Scheduled agents</div><div class="stat-source">nightly and weekly</div></div>
-    <div class="stat"><div class="stat-value">4</div><div class="stat-label">Live tools</div><div class="stat-source">no login required</div></div>
-    <div class="stat"><div class="stat-value accent">4</div><div class="stat-label">Strategy documents</div><div class="stat-source">boardroom-reviewed</div></div>
-    <div class="stat"><div class="stat-value green">4</div><div class="stat-label">MCP servers</div><div class="stat-source">model context protocol</div></div>
-    <div class="stat"><div class="stat-value">3</div><div class="stat-label">Agentic systems</div><div class="stat-source">langgraph multi-agent</div></div>
+    <div class="stat">
+      <div class="stat-value green">35</div>
+      <div class="stat-label">Scheduled agents</div>
+      <div class="stat-source">workflow schedules</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">94.9</div>
+      <div class="stat-label">Audit average</div>
+      <div class="stat-source">deterministic scoring</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value green">5/5</div>
+      <div class="stat-label">Surfaces healthy</div>
+      <div class="stat-source">status and encoding</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value accent">5</div>
+      <div class="stat-label">MCP servers</div>
+      <div class="stat-source">model context protocol</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">2</div>
+      <div class="stat-label">Observability tools</div>
+      <div class="stat-source">otel and genai traces</div>
+    </div>
   </div>
-
+  <!-- STATS:END -->
+  <div class="region-note">// generated nightly from STATE.md</div>
   <div class="section-header">
     <span class="section-label">Try it now</span>
     <div class="section-line"></div>
@@ -134,9 +164,29 @@
   </div>
 
   <div class="section-header">
+    <span class="section-label">Where the tools were wrong</span>
+    <div class="section-line"></div>
+    <span class="section-label">findings that changed a conclusion</span>
+  </div>
+  <div class="proof-list">
+    <a class="proof-row" href="https://github.com/brianpelow/regulatory-change-impact-agent/blob/main/docs/adr/0003-shared-control-amortization.md" target="_blank">
+      <div class="proof-tag">adr 0003</div>
+      <div class="proof-text">Shared platform controls were priced once per system. Correcting it moved a remediation estimate from 213 to 122 engineer-weeks &mdash; the platform thesis, proven arithmetically by a tool built for something else.</div>
+    </a>
+    <a class="proof-row" href="https://github.com/brianpelow/code-compliance-auditor/blob/main/docs/adr/0003-path-class-exclusions.md" target="_blank">
+      <div class="proof-tag">self-audit</div>
+      <div class="proof-text">The auditor graded itself F, 54/100, with two criticals. Every finding was a false positive against its own test fixtures. Narrow exclusions moved it to an A while five other repos held their exact prior scores.</div>
+    </a>
+    <a class="proof-row" href="https://github.com/brianpelow/compliance-chaos-engineer/blob/main/docs/adr/0002-designed-blind-spot.md" target="_blank">
+      <div class="proof-tag">chaos</div>
+      <div class="proof-text">The chaos engine first reported 100 percent detection. That is a rigged game, not a result. It now reports 85.7 percent with one critical miss, named and attributed.</div>
+    </a>
+  </div>
+
+  <div class="section-header">
     <span class="section-label">Platform maturity</span>
     <div class="section-line"></div>
-    <span class="section-label" id="maturity-date">self-assessed nightly</span>
+    <span class="section-label">self-assessed &middot; last reviewed 2026-08-08</span>
   </div>
   <div class="maturity-grid" id="maturity-grid"></div>
 
@@ -145,250 +195,285 @@
     <div class="section-line"></div>
   </div>
 
+
+  <!-- CATALOG:START -->
   <div class="category">
     <div class="category-title">Technology strategy</div>
     <div class="repo-grid">
-      <a class="repo-card" href="https://github.com/brianpelow/integrated-strategy" target="_blank">
-        <div class="repo-name">integrated-strategy</div>
-        <div class="repo-desc">Entry point: how platform engineering, organizational design, and AI governance fit together. Start here.</div>
-        <div class="repo-meta"><span class="badge badge-python">Docs</span><span class="badge badge-agent">Strategy</span><span class="badge badge-fintech">C-Suite</span></div>
-      </a>
-      <a class="repo-card" href="https://github.com/brianpelow/platform-engineering-thesis" target="_blank">
-        <div class="repo-name">platform-engineering-thesis</div>
-        <div class="repo-desc">Platform First: why the AI winners in regulated industries will be built on standard engineering.</div>
-        <div class="repo-meta"><span class="badge badge-python">Docs</span><span class="badge badge-agent">Thesis</span><span class="badge badge-fintech">Fintech</span></div>
+      <a class="repo-card" href="https://github.com/brianpelow/ai-governance-framework" target="_blank">
+        <div class="repo-name">ai-governance-framework</div>
+        <div class="repo-desc">AI governance in regulated industries: the replay imperative - decision record architecture, model registry, and the four actors who will demand...</div>
+        <div class="repo-meta"><span class="badge">ai-governance</span><span class="badge">decision-records</span><span class="badge badge-grade" title="deterministic audit score">A 93</span></div>
       </a>
       <a class="repo-card" href="https://github.com/brianpelow/engineering-operating-model" target="_blank">
         <div class="repo-name">engineering-operating-model</div>
-        <div class="repo-desc">The engineering operating model for the agentic era: talent density, attribution, and domain judgment.</div>
-        <div class="repo-meta"><span class="badge badge-python">Docs</span><span class="badge badge-agent">Leadership</span><span class="badge badge-fintech">Org Design</span></div>
+        <div class="repo-desc">How I think about building and leading engineering organizations in regulated industries - team design, culture, career development, and operational...</div>
+        <div class="repo-meta"><span class="badge">agentic-ai</span><span class="badge">engineering-leadership</span><span class="badge badge-grade" title="deterministic audit score">A 93</span></div>
       </a>
-      <a class="repo-card" href="https://github.com/brianpelow/ai-governance-framework" target="_blank">
-        <div class="repo-name">ai-governance-framework</div>
-        <div class="repo-desc">The replay imperative: why 1:1 replay of every AI decision is paramount to staying in business.</div>
-        <div class="repo-meta"><span class="badge badge-python">Docs</span><span class="badge badge-agent">Governance</span><span class="badge badge-fintech">Regulated AI</span></div>
+      <a class="repo-card" href="https://github.com/brianpelow/integrated-strategy" target="_blank">
+        <div class="repo-name">integrated-strategy</div>
+        <div class="repo-desc">The integrated strategy: how platform engineering, organizational design, and AI governance fit together - the entry point to a four-document body of...</div>
+        <div class="repo-meta"><span class="badge">ai-governance</span><span class="badge">ai-strategy</span><span class="badge badge-grade" title="deterministic audit score">B 91</span></div>
+      </a>
+      <a class="repo-card" href="https://github.com/brianpelow/platform-engineering-thesis" target="_blank">
+        <div class="repo-name">platform-engineering-thesis</div>
+        <div class="repo-desc">A technology strategy thesis: where platform engineering and agentic AI intersect in regulated industries, 2026-2030</div>
+        <div class="repo-meta"><span class="badge">agentic-ai</span><span class="badge">ai-strategy</span><span class="badge badge-grade" title="deterministic audit score">A 93</span></div>
       </a>
     </div>
   </div>
-
   <div class="category" style="margin-top:1px;">
     <div class="category-title">Control plane and governance</div>
     <div class="repo-grid">
-      <a class="repo-card" href="https://github.com/brianpelow/orbit-platform" target="_blank">
-        <div class="repo-name">orbit-platform</div>
-        <div class="repo-desc">Production Services Control Plane: 6-stage governance framework with OPA policy engine blocking non-compliant deployments.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">OPA</span><span class="badge badge-fintech">Control Plane</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
-      </a>
       <a class="repo-card" href="https://github.com/brianpelow/cab-automation" target="_blank">
         <div class="repo-name">cab-automation</div>
-        <div class="repo-desc">Change Advisory Board automation: AI-generated CAB packages, risk scoring, and deployment gates.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">FastAPI</span><span class="badge badge-fintech">SOX ITGC</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+        <div class="repo-desc">Change Advisory Board automation - AI-generated CAB packages, risk scoring, and deployment gates for regulated financial services</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">cab</span><span class="badge">change-management</span><span class="badge badge-grade" title="deterministic audit score">A 96</span></div>
       </a>
       <a class="repo-card" href="https://github.com/brianpelow/code-compliance-auditor" target="_blank">
         <div class="repo-name">code-compliance-auditor</div>
-        <div class="repo-desc">Deterministic security, governance, and debt scoring for any public repo. CI-gateable. Grades honestly enough to fail itself.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">CLI</span><span class="badge badge-fintech">Audit</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+        <div class="repo-desc">Deterministic multi-agent compliance auditor for GitHub repositories - security, compliance, and technical debt scoring with prioritized remediation</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">audit</span><span class="badge">compliance</span><span class="badge badge-grade" title="deterministic audit score">A 93</span></div>
       </a>
       <a class="repo-card" href="https://github.com/brianpelow/compliance-chaos-engineer" target="_blank">
         <div class="repo-name">compliance-chaos-engineer</div>
-        <div class="repo-desc">Chaos engineering for governance controls: injects governance failures and scores whether the controls detect them. Reports the misses, not just the catches.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">Chaos</span><span class="badge badge-fintech">Governance</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
-      </a>
-      <a class="repo-card" href="https://github.com/brianpelow/regulatory-change-impact-agent" target="_blank">
-        <div class="repo-name">regulatory-change-impact-agent</div>
-        <div class="repo-desc">Takes regulatory guidance, determines which systems it binds, and produces a sequenced remediation plan with effort estimates.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">RegTech</span><span class="badge badge-fintech">Compliance</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+        <div class="repo-desc">Chaos engineering for governance controls.</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">chaos-engineering</span><span class="badge">compliance</span><span class="badge badge-grade" title="deterministic audit score">A 100</span></div>
       </a>
       <a class="repo-card" href="https://github.com/brianpelow/fintech-platform-reference" target="_blank">
         <div class="repo-name">fintech-platform-reference</div>
-        <div class="repo-desc">Reference architecture: ADRs, SLOs, runbooks, Backstage catalog, and PCI-DSS/SOX/FFIEC control mappings.</div>
-        <div class="repo-meta"><span class="badge badge-python">Docs</span><span class="badge badge-agent">ADRs</span><span class="badge badge-fintech">Compliance</span></div>
+        <div class="repo-desc">Reference architecture for a regulated fintech engineering platform - ADRs, system design, catalog definitions, and SLO specs</div>
+        <div class="repo-meta"><span class="badge">adr</span><span class="badge">architecture</span><span class="badge badge-grade" title="deterministic audit score">B 90</span></div>
+      </a>
+      <a class="repo-card" href="https://github.com/brianpelow/orbit-platform" target="_blank">
+        <div class="repo-name">orbit-platform</div>
+        <div class="repo-desc">Production Services Control Plane - a 6-stage image build and deployment governance framework for regulated financial services</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">control-plane</span><span class="badge">fintech</span><span class="badge badge-grade" title="deterministic audit score">A 99</span></div>
       </a>
       <a class="repo-card" href="https://github.com/brianpelow/platform-conductor" target="_blank">
         <div class="repo-name">platform-conductor</div>
-        <div class="repo-desc">Meta-orchestrator monitoring every nightly agent, opening failure issues, and publishing the governance scorecard.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">Autonomous</span><span class="badge badge-fintech">Governance</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+        <div class="repo-desc">Meta-orchestrator for the brianpelow platform - coordinates agents, detects failures, and publishes weekly health summaries</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">agents</span><span class="badge">autonomous</span><span class="badge badge-grade" title="deterministic audit score">A 99</span></div>
+      </a>
+      <a class="repo-card" href="https://github.com/brianpelow/regulatory-change-impact-agent" target="_blank">
+        <div class="repo-name">regulatory-change-impact-agent</div>
+        <div class="repo-desc">Takes regulatory guidance, identifies affected systems, and produces a sequenced remediation plan - deterministic impact mapping for regulated...</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">ai-governance</span><span class="badge">compliance</span><span class="badge badge-grade" title="deterministic audit score">A 99</span></div>
       </a>
     </div>
   </div>
-
   <div class="category" style="margin-top:1px;">
     <div class="category-title">Autonomous intelligence</div>
     <div class="repo-grid">
-      <a class="repo-card" href="https://github.com/brianpelow/dependency-sentinel" target="_blank">
-        <div class="repo-name">dependency-sentinel</div>
-        <div class="repo-desc">Scheduled, async enterprise dependency-triage agent. Deterministic security findings from OSV.dev, optional LLM migration notes, reports the delta since last run. Two schedulers, fully offline-capable.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">Scheduled</span><span class="badge badge-fintech">Supply chain</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
-      </a>
       <a class="repo-card" href="https://github.com/brianpelow/ai-regulation-tracker" target="_blank">
         <div class="repo-name">ai-regulation-tracker</div>
-        <div class="repo-desc">Nightly agent monitoring OCC, Federal Reserve, CFPB, FDIC, SEC, FCA, ECB, and EU AI Act for AI-relevant developments.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">Autonomous</span><span class="badge badge-fintech">RegTech</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
-      </a>
-      <a class="repo-card" href="https://github.com/brianpelow/weekly-platform-intelligence" target="_blank">
-        <div class="repo-name">weekly-platform-intelligence</div>
-        <div class="repo-desc">Weekly executive brief on platform engineering, agentic AI, and regulated industry technology. Published every Monday by an agent.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">Autonomous</span><span class="badge badge-fintech">Newsletter</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+        <div class="repo-desc">Nightly agent monitoring OCC, FCA, ECB, FFIEC, CFPB, and EU AI Act feeds for AI-relevant regulatory developments - published daily to GitHub...</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">ai-governance</span><span class="badge">autonomous</span><span class="badge badge-grade" title="deterministic audit score">A 96</span></div>
       </a>
       <a class="repo-card" href="https://github.com/brianpelow/BoardroomBrief" target="_blank">
         <div class="repo-name">BoardroomBrief</div>
-        <div class="repo-desc">Autonomous weekly engineering brief: pulls GitHub, JIRA, and incident data into exec-ready narratives.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">Autonomous</span><span class="badge badge-fintech">Executive</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+        <div class="repo-desc">Autonomous weekly engineering brief generator - pulls GitHub, JIRA, and incident data into exec-ready narratives</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">agents</span><span class="badge">ai-agents</span><span class="badge badge-grade" title="deterministic audit score">A 98</span></div>
+      </a>
+      <a class="repo-card" href="https://github.com/brianpelow/dependency-sentinel" target="_blank">
+        <div class="repo-name">dependency-sentinel</div>
+        <div class="repo-desc">Scheduled, async enterprise dependency-triage agent.</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">agentic-ai</span><span class="badge">dependency-management</span><span class="badge badge-grade" title="deterministic audit score">A 99</span></div>
+      </a>
+      <a class="repo-card" href="https://github.com/brianpelow/weekly-platform-intelligence" target="_blank">
+        <div class="repo-name">weekly-platform-intelligence</div>
+        <div class="repo-desc">Weekly executive brief on platform engineering, agentic AI, and regulated industry technology - published every Monday by an autonomous agent</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">agentic-ai</span><span class="badge">ai-governance</span><span class="badge badge-grade" title="deterministic audit score">A 96</span></div>
       </a>
     </div>
   </div>
-
   <div class="category" style="margin-top:1px;">
     <div class="category-title">Agentic systems</div>
     <div class="repo-grid">
-      <a class="repo-card" href="https://github.com/brianpelow/IncidentPilot" target="_blank">
-        <div class="repo-name">IncidentPilot</div>
-        <div class="repo-desc">Multi-agent incident response: triage, escalation, runbook retrieval, and post-mortem drafting with LangGraph.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">LangGraph</span><span class="badge badge-fintech">SRE</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
-      </a>
-      <a class="repo-card" href="https://github.com/brianpelow/DataPipelineAgent" target="_blank">
-        <div class="repo-name">DataPipelineAgent</div>
-        <div class="repo-desc">Agentic ETL orchestrator: monitors data sources, detects schema drift, and auto-heals pipelines.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">Agentic</span><span class="badge badge-fintech">Fintech</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
-      </a>
       <a class="repo-card" href="https://github.com/brianpelow/ai-incident-war-room" target="_blank">
         <div class="repo-name">ai-incident-war-room</div>
-        <div class="repo-desc">Live five-agent simulation of an AI governance failure in production, producing a complete response package.</div>
-        <div class="repo-meta"><span class="badge badge-python">Web</span><span class="badge badge-agent">Multi-agent</span><span class="badge badge-fintech">Governance</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+        <div class="repo-desc">Live multi-agent AI incident simulation for regulated industries - five agents coordinate in real time to produce a complete incident response package</div>
+        <div class="repo-meta"><span class="badge">HTML</span><span class="badge">ai-governance</span><span class="badge">fintech</span><span class="badge badge-grade" title="deterministic audit score">B 89</span></div>
       </a>
       <a class="repo-card" href="https://github.com/brianpelow/ai-model-autopsy" target="_blank">
         <div class="repo-name">ai-model-autopsy</div>
-        <div class="repo-desc">Agentic post-mortem investigator for AI failures. Deterministic governance analysis, live LLM narrative, degrades gracefully when free models are unavailable.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">Agentic</span><span class="badge badge-fintech">Governance</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+        <div class="repo-desc">Agentic post-mortem investigator for AI failures.</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">agentic-ai</span><span class="badge">ai-governance</span><span class="badge badge-grade" title="deterministic audit score">A 99</span></div>
+      </a>
+      <a class="repo-card" href="https://github.com/brianpelow/DataPipelineAgent" target="_blank">
+        <div class="repo-name">DataPipelineAgent</div>
+        <div class="repo-desc">Agentic ETL orchestrator - monitors data sources, detects schema drift, and auto-heals pipelines</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">agents</span><span class="badge">data-pipeline</span><span class="badge badge-grade" title="deterministic audit score">A 99</span></div>
+      </a>
+      <a class="repo-card" href="https://github.com/brianpelow/IncidentPilot" target="_blank">
+        <div class="repo-name">IncidentPilot</div>
+        <div class="repo-desc">Multi-agent incident response orchestrator - triage, escalation, runbook generation, and post-mortems with LangGraph</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">ai-agents</span><span class="badge">fintech</span><span class="badge badge-grade" title="deterministic audit score">A 99</span></div>
       </a>
     </div>
   </div>
-
+  <div class="category" style="margin-top:1px;">
+    <div class="category-title">Interactive tools</div>
+    <div class="repo-grid">
+      <a class="repo-card" href="https://github.com/brianpelow/cto-interview-simulator" target="_blank">
+        <div class="repo-name">cto-interview-simulator</div>
+        <div class="repo-desc">An AI-powered CTO interview simulator - experience the interview before you sit down with the candidate</div>
+        <div class="repo-meta"><span class="badge">HTML</span><span class="badge">adaptive</span><span class="badge">ai</span><span class="badge badge-grade" title="deterministic audit score">B 89</span></div>
+      </a>
+      <a class="repo-card" href="https://github.com/brianpelow/platform-maturity-assessment" target="_blank">
+        <div class="repo-name">platform-maturity-assessment</div>
+        <div class="repo-desc">Interactive platform maturity assessment for engineering leaders - 6 domains, 20 questions, scored report with recommendations</div>
+        <div class="repo-meta"><span class="badge">HTML</span><span class="badge">assessment</span><span class="badge">devops</span><span class="badge badge-grade" title="deterministic audit score">B 89</span></div>
+      </a>
+      <a class="repo-card" href="https://github.com/brianpelow/portfolio-assistant" target="_blank">
+        <div class="repo-name">portfolio-assistant</div>
+        <div class="repo-desc">AI-powered portfolio assistant - ask questions about the brianpelow engineering portfolio</div>
+        <div class="repo-meta"><span class="badge">HTML</span><span class="badge">ai-assistant</span><span class="badge">claude</span><span class="badge badge-grade" title="deterministic audit score">B 89</span></div>
+      </a>
+    </div>
+  </div>
   <div class="category" style="margin-top:1px;">
     <div class="category-title">MCP servers</div>
     <div class="repo-grid">
-      <a class="repo-card" href="https://github.com/brianpelow/mcp-incident-intel" target="_blank">
-        <div class="repo-name">mcp-incident-intel</div>
-        <div class="repo-desc">Wires PagerDuty, Dynatrace, and runbooks into a single incident context source for LLM agents.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-mcp">MCP</span><span class="badge badge-fintech">SRE</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
-      </a>
       <a class="repo-card" href="https://github.com/brianpelow/mcp-compliance-grc" target="_blank">
         <div class="repo-name">mcp-compliance-grc</div>
-        <div class="repo-desc">Maps SOC 2, ISO 27001, and PCI-DSS controls to code evidence and drafts compliance narratives.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-mcp">MCP</span><span class="badge badge-fintech">Compliance</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+        <div class="repo-desc">MCP server for GRC workflows - maps controls to code evidence and drafts compliance narratives</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">compliance</span><span class="badge">fintech</span><span class="badge badge-grade" title="deterministic audit score">A 98</span></div>
       </a>
       <a class="repo-card" href="https://github.com/brianpelow/mcp-developer-portal" target="_blank">
         <div class="repo-name">mcp-developer-portal</div>
-        <div class="repo-desc">Wraps Backstage: lets AI agents query the service catalog, fetch TechDocs, and scaffold services.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-mcp">MCP</span><span class="badge badge-fintech">Platform</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
-      </a>
-      <a class="repo-card" href="https://github.com/brianpelow/genai-trace-conformance" target="_blank">
-        <div class="repo-name">genai-trace-conformance</div>
-        <div class="repo-desc">Deterministic conformance validator for GenAI/agent telemetry. Checks real OTLP traces against OpenTelemetry GenAI semantic conventions: required attributes, token/cost observability, content-safety (flags secrets), agent structure. Graded, CI-gateable.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">GenAI</span><span class="badge badge-fintech">Observability</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
-      </a>
-      <a class="repo-card" href="https://github.com/brianpelow/otel-pipeline-workbench" target="_blank">
-        <div class="repo-name">otel-pipeline-workbench</div>
-        <div class="repo-desc">Deterministic lint + simulate for OpenTelemetry Collector configs. Grades correctness, security, and cost-safety (CI-gateable); simulates telemetry flow to show what a config drops and samples before prod.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">OTel</span><span class="badge badge-fintech">Observability</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+        <div class="repo-desc">MCP server wrapping Backstage - query service catalog, fetch TechDocs, and scaffold services via AI agents</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">backstage</span><span class="badge">developer-portal</span><span class="badge badge-grade" title="deterministic audit score">A 98</span></div>
       </a>
       <a class="repo-card" href="https://github.com/brianpelow/mcp-evidence-ledger" target="_blank">
         <div class="repo-name">mcp-evidence-ledger</div>
-        <div class="repo-desc">MCP server: append-only, hash-chained evidence ledger for agent actions. Tamper-evident receipts over real local state; verify pinpoints any altered record. Deterministic, no LLM.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">MCP</span><span class="badge badge-fintech">Audit</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+        <div class="repo-desc">MCP server providing an append-only, hash-chained evidence ledger for agent actions.</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">agent-governance</span><span class="badge">audit-trail</span><span class="badge badge-grade" title="deterministic audit score">A 99</span></div>
       </a>
       <a class="repo-card" href="https://github.com/brianpelow/mcp-governance-gateway" target="_blank">
         <div class="repo-name">mcp-governance-gateway</div>
-        <div class="repo-desc">Governed agentic action over MCP: every write routes through a deterministic policy gate and produces a tamper-evident decision record.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-mcp">MCP</span><span class="badge badge-fintech">Governance</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+        <div class="repo-desc">Write-path MCP server: every governance action routes through a deterministic policy engine and produces an immutable, hash-sealed decision record.</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">agentic-ai</span><span class="badge">audit-trail</span><span class="badge badge-grade" title="deterministic audit score">A 99</span></div>
+      </a>
+      <a class="repo-card" href="https://github.com/brianpelow/mcp-incident-intel" target="_blank">
+        <div class="repo-name">mcp-incident-intel</div>
+        <div class="repo-desc">MCP server wiring PagerDuty, Dynatrace, and runbook context for AI-driven incident response</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">dynatrace</span><span class="badge">incident-response</span><span class="badge badge-grade" title="deterministic audit score">A 98</span></div>
       </a>
     </div>
   </div>
-
+  <div class="category" style="margin-top:1px;">
+    <div class="category-title">Observability</div>
+    <div class="repo-grid">
+      <a class="repo-card" href="https://github.com/brianpelow/genai-trace-conformance" target="_blank">
+        <div class="repo-name">genai-trace-conformance</div>
+        <div class="repo-desc">Deterministic conformance validator for GenAI/agent telemetry.</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">ai-agents</span><span class="badge">genai</span><span class="badge badge-grade" title="deterministic audit score">A 99</span></div>
+      </a>
+      <a class="repo-card" href="https://github.com/brianpelow/otel-pipeline-workbench" target="_blank">
+        <div class="repo-name">otel-pipeline-workbench</div>
+        <div class="repo-desc">Deterministic workbench for OpenTelemetry Collector configs: lint them for correctness, security, and cost-safety, and simulate telemetry flow to see...</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">collector</span><span class="badge">devsecops</span><span class="badge badge-grade" title="deterministic audit score">A 99</span></div>
+      </a>
+    </div>
+  </div>
   <div class="category" style="margin-top:1px;">
     <div class="category-title">Engineering metrics</div>
     <div class="repo-grid">
-      <a class="repo-card" href="https://github.com/brianpelow/TeamHealthRadar" target="_blank">
-        <div class="repo-name">TeamHealthRadar</div>
-        <div class="repo-desc">DORA + SPACE framework scoring with AI-synthesized weekly health narratives.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">FastAPI</span><span class="badge badge-fintech">DORA</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
-      </a>
       <a class="repo-card" href="https://github.com/brianpelow/PlatformSLOBoard" target="_blank">
         <div class="repo-name">PlatformSLOBoard</div>
-        <div class="repo-desc">SLO aggregation from Dynatrace and PagerDuty with error budget burn rates and exec summaries.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">FastAPI</span><span class="badge badge-fintech">SLO</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+        <div class="repo-desc">Executive-grade platform SLO dashboard aggregating PagerDuty and Dynatrace reliability signals</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">dynatrace</span><span class="badge">error-budget</span><span class="badge badge-grade" title="deterministic audit score">A 99</span></div>
+      </a>
+      <a class="repo-card" href="https://github.com/brianpelow/TeamHealthRadar" target="_blank">
+        <div class="repo-name">TeamHealthRadar</div>
+        <div class="repo-desc">Engineering team health scoring - DORA metrics, SPACE framework signals, and AI-synthesized insights</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">dora-metrics</span><span class="badge">engineering-metrics</span><span class="badge badge-grade" title="deterministic audit score">A 98</span></div>
       </a>
       <a class="repo-card" href="https://github.com/brianpelow/TechDebtLedger" target="_blank">
         <div class="repo-name">TechDebtLedger</div>
-        <div class="repo-desc">Scans repos for complexity hotspots and stale dependencies, produces a prioritized payoff roadmap.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">FastAPI</span><span class="badge badge-fintech">Tech Debt</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+        <div class="repo-desc">Automated tech debt tracker - scans repos for complexity hotspots and surfaces a prioritized payoff roadmap</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">complexity</span><span class="badge">fastapi</span><span class="badge badge-grade" title="deterministic audit score">A 97</span></div>
       </a>
     </div>
   </div>
-
   <div class="category" style="margin-top:1px;">
-    <div class="category-title">Platform engineering patterns</div>
+    <div class="category-title">Platform patterns</div>
     <div class="repo-grid">
-      <a class="repo-card" href="https://github.com/brianpelow/platform-maturity-model" target="_blank">
-        <div class="repo-name">platform-maturity-model</div>
-        <div class="repo-desc">5-level maturity framework with automated evidence collection across 6 capability domains.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">Framework</span><span class="badge badge-fintech">Maturity</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
-      </a>
       <a class="repo-card" href="https://github.com/brianpelow/innersource-scorecard" target="_blank">
         <div class="repo-name">innersource-scorecard</div>
-        <div class="repo-desc">Grades repos on discoverability, documentation, contribution friction, and adoption signals.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">Scoring</span><span class="badge badge-fintech">Inner-source</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+        <div class="repo-desc">Inner-source health scorecard - grades repos on discoverability, documentation, contribution friction, and adoption</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">developer-experience</span><span class="badge">fintech</span><span class="badge badge-grade" title="deterministic audit score">A 99</span></div>
+      </a>
+      <a class="repo-card" href="https://github.com/brianpelow/platform-maturity-model" target="_blank">
+        <div class="repo-name">platform-maturity-model</div>
+        <div class="repo-desc">Open framework and CLI for assessing platform engineering maturity - 5-level model with automated evidence collection</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">devops</span><span class="badge">engineering-excellence</span><span class="badge badge-grade" title="deterministic audit score">A 98</span></div>
       </a>
       <a class="repo-card" href="https://github.com/brianpelow/service-catalog-sync" target="_blank">
         <div class="repo-name">service-catalog-sync</div>
-        <div class="repo-desc">Automated Backstage catalog hydration: scans repos and infers ownership and tech stack.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">Backstage</span><span class="badge badge-fintech">Platform</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+        <div class="repo-desc">Automated Backstage catalog hydration - scans repos, infers ownership and tech stack, keeps catalog fresh via CI</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">backstage</span><span class="badge">catalog</span><span class="badge badge-grade" title="deterministic audit score">A 99</span></div>
       </a>
     </div>
   </div>
-
   <div class="category" style="margin-top:1px;">
-    <div class="category-title">Developer productivity CLIs</div>
+    <div class="category-title">Developer productivity</div>
     <div class="repo-grid">
-      <a class="repo-card" href="https://github.com/brianpelow/repoforge" target="_blank">
-        <div class="repo-name">repoforge</div>
-        <div class="repo-desc">AI-assisted repo scaffolding with 7 templates tuned for regulated industries.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">CLI</span><span class="badge badge-fintech">Scaffolding</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
-      </a>
       <a class="repo-card" href="https://github.com/brianpelow/pr-autopilot" target="_blank">
         <div class="repo-name">pr-autopilot</div>
-        <div class="repo-desc">Generates PR descriptions, suggests reviewers, and applies labels from your diff.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">CLI</span><span class="badge badge-fintech">GitHub</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+        <div class="repo-desc">CLI that auto-generates PR descriptions, reviewers, and labels from your diff using AI</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">ai-assisted</span><span class="badge">cli</span><span class="badge badge-grade" title="deterministic audit score">A 98</span></div>
+      </a>
+      <a class="repo-card" href="https://github.com/brianpelow/repoforge" target="_blank">
+        <div class="repo-name">repoforge</div>
+        <div class="repo-desc">AI-assisted repo scaffolding CLI for regulated industries engineering teams</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">ai-assisted</span><span class="badge">cli</span><span class="badge badge-grade" title="deterministic audit score">A 93</span></div>
       </a>
       <a class="repo-card" href="https://github.com/brianpelow/runbook-gen" target="_blank">
         <div class="repo-name">runbook-gen</div>
-        <div class="repo-desc">Auto-generates operational runbooks from code, alert definitions, and incident history.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">CLI</span><span class="badge badge-fintech">SRE</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+        <div class="repo-desc">Auto-generates operational runbooks from code, alerts, and incident history using AI</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">cli</span><span class="badge">developer-productivity</span><span class="badge badge-grade" title="deterministic audit score">A 99</span></div>
       </a>
     </div>
   </div>
-
   <div class="category" style="margin-top:1px;">
     <div class="category-title">Just for fun</div>
     <div class="repo-grid">
-      <a class="repo-card" href="https://github.com/brianpelow/vibe-check-cli" target="_blank">
-        <div class="repo-name">vibe-check-cli</div>
-        <div class="repo-desc">Analyzes the vibe of any GitHub repo and delivers a brutally honest vibe report.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">CLI</span><span class="badge badge-fintech">Fun</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
-      </a>
       <a class="repo-card" href="https://github.com/brianpelow/code-roast" target="_blank">
         <div class="repo-name">code-roast</div>
-        <div class="repo-desc">Paste any code and get it brutally but lovingly roasted by a senior engineer who has seen things.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">CLI</span><span class="badge badge-fintech">Fun</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+        <div class="repo-desc">Paste any code and get it brutally but lovingly roasted by a senior engineer who has seen things</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">cli</span><span class="badge">code-review</span><span class="badge badge-grade" title="deterministic audit score">A 94</span></div>
       </a>
       <a class="repo-card" href="https://github.com/brianpelow/sports-analytics-for-engineers" target="_blank">
         <div class="repo-name">sports-analytics-for-engineers</div>
-        <div class="repo-desc">DORA metrics for sports teams: deployment frequency, change failure rate, and MTTR for your favorite team.</div>
-        <div class="repo-meta"><span class="badge badge-python">Python</span><span class="badge badge-agent">CLI</span><span class="badge badge-fintech">Fun</span><span class="ci-badge"><span class="ci-dot"></span>CI passing</span></div>
+        <div class="repo-desc">DORA metrics for sports teams - deployment frequency, change failure rate, and MTTR applied to your favorite teams</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">analytics</span><span class="badge">cli</span><span class="badge badge-grade" title="deterministic audit score">A 97</span></div>
+      </a>
+      <a class="repo-card" href="https://github.com/brianpelow/vibe-check-cli" target="_blank">
+        <div class="repo-name">vibe-check-cli</div>
+        <div class="repo-desc">Analyzes the vibe of any GitHub repo - commit messages, PR titles, README tone - and delivers a brutally honest vibe report</div>
+        <div class="repo-meta"><span class="badge">Python</span><span class="badge">cli</span><span class="badge">developer-tools</span><span class="badge badge-grade" title="deterministic audit score">A 97</span></div>
       </a>
     </div>
   </div>
-
+  <div class="category" style="margin-top:1px;">
+    <div class="category-title">Meta</div>
+    <div class="repo-grid">
+      <a class="repo-card" href="https://github.com/brianpelow/brianpelow" target="_blank">
+        <div class="repo-name">brianpelow</div>
+        <div class="repo-desc">GitHub profile</div>
+        <div class="repo-meta"><span class="badge badge-grade" title="deterministic audit score">C 76</span></div>
+      </a>
+      <a class="repo-card" href="https://github.com/brianpelow/brianpelow.github.io" target="_blank">
+        <div class="repo-name">brianpelow.github.io</div>
+        <div class="repo-desc">Live platform engineering intelligence dashboard</div>
+        <div class="repo-meta"><span class="badge">HTML</span><span class="badge">dashboard</span><span class="badge">fintech</span><span class="badge badge-grade" title="deterministic audit score">B 86</span></div>
+      </a>
+    </div>
+  </div>
+  <!-- CATALOG:END -->
+  <div class="region-note">// generated nightly from PORTFOLIO.md</div>
   <footer>
     <div class="footer-text">// brianpelow &middot; platform engineering &middot; fintech &middot; manufacturing &middot; regulated industries</div>
     <div class="footer-links">
@@ -426,41 +511,8 @@ function renderMaturity() {
     </div>`;
   }).join('');
 
-  const today = new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
-  document.getElementById("maturity-date").textContent = `last assessed ${today}`;
 }
 
-// Fetch the repo count live rather than hardcoding it. A number that proves
-// itself cannot go stale the way a hardcoded one does.
-async function loadRepoCount() {
-  const valueEl = document.getElementById("repo-count");
-  const sourceEl = document.getElementById("repo-source");
-  try {
-    const res = await fetch("https://api.github.com/users/brianpelow", { cache: "no-store" });
-    if (!res.ok) throw new Error(String(res.status));
-    const data = await res.json();
-    const count = data.public_repos;
-    animateNumber(valueEl, count, 900);
-    sourceEl.textContent = "live from github api";
-  } catch (err) {
-    valueEl.textContent = "37";
-    sourceEl.textContent = "cached";
-  }
-}
-
-function animateNumber(el, target, duration) {
-  const startTime = performance.now();
-  function update(now) {
-    const progress = Math.min((now - startTime) / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.round(target * eased);
-    if (progress < 1) requestAnimationFrame(update);
-  }
-  requestAnimationFrame(update);
-}
-
-renderMaturity();
-loadRepoCount();
 </script>
 </body>
 </html>
